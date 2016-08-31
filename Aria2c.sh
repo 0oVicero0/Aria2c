@@ -6,12 +6,12 @@ apt-get update
 apt-get install -y aria2
 fi
 
-rm -rf /root/.aria >/dev/null 2>&1
+rm -rf /root/.aria2 >/dev/null 2>&1
 rm -rf /etc/aria2 >/dev/null 2>&1
-mkdir -p /root/.aria
+mkdir -p /root/.aria2
 mkdir -p /etc/aria2
 
-wget --no-check-certificate -q -O /root/.aria/dht.dat "https://raw.githubusercontent.com/0oVicero0/Aria2c/master/.aria/dht.dat"
+wget --no-check-certificate -q -O /root/.aria2/dht.dat "https://raw.githubusercontent.com/0oVicero0/Aria2c/master/.aria/dht.dat"
 wget --no-check-certificate -q -O /etc/aria2/aria2c "https://raw.githubusercontent.com/0oVicero0/Aria2c/master/aria2c"
 wget --no-check-certificate -q -O /etc/aria2/aria2c.conf "https://raw.githubusercontent.com/0oVicero0/Aria2c/master/aria2c.conf"
 
