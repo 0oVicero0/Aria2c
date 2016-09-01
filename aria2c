@@ -10,14 +10,15 @@
 ### END INIT INFO
 DAEMON=/usr/bin/aria2c
 CONFPATH=/etc/aria2/aria2c.conf
+WORKPATH=/usr/share/nginx/www
 
 case "$1" in
 start)
 mkdir -p /root/.aria2
-mkdir -p /usr/share/nginx/www/torrent
-mkdir -p /usr/share/nginx/www/download
-cp -uf /usr/share/nginx/www/download/*.torrent /usr/share/nginx/www/torrent
-#rm -rf /usr/share/nginx/www/download/*
+mkdir -p $WORKPATH/torrent
+mkdir -p $WORKPATH/download
+cp -uf $WORKPATH/download/*.torrent $WORKPATH/torrent
+#rm -rf $WORKPATH/download/*
 iptables -A INPUT -p tcp --dport 6800 -j ACCEPT
 iptables -A INPUT -p tcp --dport 6881:6999 -j ACCEPT
 iptables -A INPUT -p udp --dport 6881:6999 -j ACCEPT
