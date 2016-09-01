@@ -16,7 +16,7 @@ start)
 mkdir -p /root/.aria2
 mkdir -p /usr/share/nginx/www/torrent
 mkdir -p /usr/share/nginx/www/download
-cp -f /usr/share/nginx/www/download/*.torrent /usr/share/nginx/www/torrent
+cp -uf /usr/share/nginx/www/download/*.torrent /usr/share/nginx/www/torrent
 #rm -rf /usr/share/nginx/www/download/*
 iptables -A INPUT -p tcp --dport 6800 -j ACCEPT
 iptables -A INPUT -p tcp --dport 6881:6999 -j ACCEPT
