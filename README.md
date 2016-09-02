@@ -8,3 +8,25 @@ wget --no-check-certificate -O Aria2c.sh "https://raw.githubusercontent.com/0oVi
 ```
 ----------------------------------------------------------------------------
 ----------------------------------------------------------------------------
+bypy
+```
+apt-get update
+apt-get install -y python-pip
+pip install requests
+pip install bypy
+bypy.py info
+
+```
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+ffmpeg
+```
+echo "deb ftp://ftp.deb-multimedia.org wheezy main" >>/etc/apt/sources.list
+apt-get update
+apt-get install -y deb-multimedia-keyring
+apt-get update
+apt-get install -y ffmpeg
+
+```
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
