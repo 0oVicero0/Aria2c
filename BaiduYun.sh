@@ -1,12 +1,15 @@
 #!/bin/bash
+
 function Hello()
 {
-CheckEXE=`ps -e |grep "bypy.py"`
-if [[ $CheckEXE == "" ]]; then
+CheckEXE=`which bypy.py`
+CheckPS=`ps -e |grep "bypy.py"`
+if [[ $CheckEXE != "" ]]; then
+if [[ $CheckPS == "" ]]; then
 CreatList;
 else
 exit 1
-fi
+fi fi
 }
 
 function CreatList()
@@ -27,7 +30,7 @@ fi
 sed -i '/^$/'d /usr/share/nginx/www/list.txt
 UpFile=`sed -n 1p /usr/share/nginx/www/list.txt`
 if [[ $UpFile != "" ]]; then
-bypy.py -v upload "/usr/share/nginx/www/download/$UpFile"
+python $CheckEXE -v upload "/usr/share/nginx/www/download/$UpFile"
 sed -i "/$UpFile/"d /usr/share/nginx/www/list.txt
 UpLoadFile;
 else
