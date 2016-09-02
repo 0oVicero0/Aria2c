@@ -28,7 +28,7 @@ if [[ `dir -d` == "." ]]; then
 cd ..
 fi
 else
-CheckDIR=`echo $rDir|awk -F '.' '{ print $NF }' |grep -E "mp4|avi|mkv|mov|rmvb|rm|flv|zip|7z|rar"`
+CheckDIR=`echo $rDir|awk -F '.' '{ print $NF }' |grep -E "mp4|avi|mkv|mov|rmvb|rm|flv"`
 if [[ $CheckDIR != "" ]]; then
 echo "$cDir/$rDir"
 mkdir -p /tmp/upload/$cDir
