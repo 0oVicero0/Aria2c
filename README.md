@@ -23,7 +23,7 @@ ffmpeg
 ```
 echo "deb ftp://ftp.deb-multimedia.org wheezy main" >>/etc/apt/sources.list
 apt-get update
-apt-get install -y deb-multimedia-keyring
+apt-get install -y --force-yes deb-multimedia-keyring
 apt-get update
 apt-get install -y ffmpeg
 
