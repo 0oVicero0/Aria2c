@@ -42,8 +42,10 @@ cd $WorkDIR/download
 rm -rf /tmp/upload >/dev/null 2>&1
 rm -rf $WorkDIR/list.txt >/dev/null 2>&1
 rm -rf $WorkDIR/nolist.txt >/dev/null 2>&1
+rm -rf $WorkDIR/Exlist.txt >/dev/null 2>&1
 ReadFile > $WorkDIR/list.txt
 dir -l $WorkDIR/download |awk "/\.aria2/" |awk '{ print $9 }' |awk -F '.aria2' '{ print $1 }' > $WorkDIR/nolist.txt
+python $CheckEXE0 list |awk 'NR!=1{ print $2,$3 }' > $WorkDIR/Exlist.txt
 CheckLoad;
 }
 
@@ -69,14 +71,22 @@ Filed=`echo $UpFile |awk -F '.' '{ print $NF }' |grep -E "mp4|avi|mkv|mov|wmv|rm
 if [[ $Filed != "" ]]; then
 $CheckEXE1 -y -i "$UpFile" -metadata copyright=Vicer -vcodec copy -acodec copy "/tmp/upload$UpFile"
 fi
+CheckSize=`du -b "/tmp/upload$UpFile" |awk '{ print $1 }'`
+CheckName=`du -b "/tmp/upload$UpFile" |awk '{ print $2 }' |awk -F '/' '{ print $NF }'`
+ExSize=`awk "/$CheckName/" $WorkDIR/Exlist.txt |awk '{ print $2 }'`
+if [[ $CheckSize == $ExSize ]]; then
+sed -i "s#$UpFile#\n#"g $WorkDIR/list.txt
+else
 python $CheckEXE0 -v upload "/tmp/upload$UpFile"
 sed -i "s#$UpFile#\n#"g $WorkDIR/list.txt
+fi
 rm -rf "/tmp/upload$UpFile" >/dev/null 2>&1
 UpLoadFile;
 else
 rm -rf /tmp/upload >/dev/null 2>&1
 rm -rf $WorkDIR/list.txt >/dev/null 2>&1
 rm -rf $WorkDIR/nolist.txt >/dev/null 2>&1
+rm -rf $WorkDIR/Exlist.txt >/dev/null 2>&1
 exit 1
 fi
 }
