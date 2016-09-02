@@ -28,7 +28,7 @@ if [[ `dir -d` == "." ]]; then
 cd ..
 fi
 else
-CheckDIR=`echo $rDir|awk -F '.' '{ print $NF }' |grep -E "mp4|avi|mkv|mov|rmvb|rm|flv"`
+CheckDIR=`echo $rDir|awk -F '.' '{ print $NF }' |grep -E "mp4|avi|mkv|mov|wmv|rmvb|rm|flv|zip|7z|rar|iso|exe"`
 if [[ $CheckDIR != "" ]]; then
 echo "$cDir/$rDir"
 mkdir -p /tmp/upload/$cDir
@@ -65,7 +65,10 @@ function UpLoadFile()
 sed -i '/^$/'d $WorkDIR/list.txt
 UpFile=`sed -n 1p $WorkDIR/list.txt`
 if [[ $UpFile != "" ]]; then
+Filed=`echo $UpFile |awk -F '.' '{ print $NF }' |grep -E "mp4|avi|mkv|mov|wmv|rmvb|rm|flv"`
+if [[ $Filed != "" ]]; then
 $CheckEXE1 -y -i "$UpFile" -metadata copyright=Vicer -vcodec copy -acodec copy "/tmp/upload$UpFile"
+fi
 python $CheckEXE0 -v upload "/tmp/upload$UpFile"
 sed -i "s#$UpFile#\n#"g $WorkDIR/list.txt
 rm -rf "/tmp/upload$UpFile" >/dev/null 2>&1
