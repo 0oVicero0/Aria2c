@@ -32,11 +32,13 @@ apt-get install -y ffmpeg
 ----------------------------------------------------------------------------
 Python3 (#!/usr/local/bin/python3)
 ```
-apt-get update
-apt-get install -y python3 python3-pip
+wget -O Python3.tgz "https://www.python.org/ftp/python/3.5.2/Python-3.5.2.tgz"
+tar -xzvf Python3.tgz
+cd Python-3*
+./configure --prefix=/usr/local
+make && make install
 pip3 install --upgrade pip
 pip3 install requests
-pip3 install --upgrade requests
 
 ```
 ----------------------------------------------------------------------------
