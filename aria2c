@@ -20,7 +20,7 @@ mkdir -p $WORKPATH/torrent
 mkdir -p $WORKPATH/download
 cp -uf $WORKPATH/download/*.torrent $WORKPATH/torrent
 #rm -rf $WORKPATH/download/*
-ln $WORKPATH/restore/* $WORKPATH/download
+ln -s $WORKPATH/restore/* $WORKPATH/download
 iptables -A INPUT -p tcp --dport 6800 -j ACCEPT
 iptables -A INPUT -p tcp --dport 6881:6999 -j ACCEPT
 iptables -A INPUT -p udp --dport 6881:6999 -j ACCEPT
