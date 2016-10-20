@@ -6,7 +6,7 @@ apt-get install -y libssl-dev libexpat1-dev libssh2-1-dev libc-ares-dev zlib1g-d
 if [[ "$Aria2cEXE" == "" ]]; then
 cd /root
 rm -rf aria2-*
-wget "https://github.com/aria2/aria2/archive/release-1.18.10.tar.gz"
+wget wget --no-check-certificate -O aria2-release.tar.gz "https://github.com/aria2/aria2/archive/release-1.18.10.tar.gz"
 tar -xvf aria2-*.tar.gz
 cd aria2*
 ./configure --prefix=/usr/local --with-ca-bundle='/etc/ssl/certs/ca-certificates.crt'
