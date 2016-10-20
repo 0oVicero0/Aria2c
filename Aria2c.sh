@@ -1,16 +1,22 @@
 #!/bin/bash
 
 Aria2cEXE=`which aria2c`
-if [[ "$Aria2cEXE" == "" ]]; then
 apt-get update
-apt-get install -y aria2
+apt-get install -y libssl-dev libexpat1-dev libssh2-1-dev libc-ares-dev zlib1g-dev libsqlite3-dev pkg-config
+if [[ "$Aria2cEXE" == "" ]]; then
+cd /root
+rm -rf aria2-*.tar.gz
+wget https://github.com/aria2/aria2/releases/download/release-1.19.3/aria2-1.19.3.tar.gz
+tar -xvf aria2-*.tar.gz
+cd aria2*
+./configure --prefix=/usr/local --with-ca-bundle='/etc/ssl/certs/ca-certificates.crt'
+make && make install
+rm -rf /root/aria2*
 fi
-
 rm -rf /root/.aria2 >/dev/null 2>&1
 rm -rf /etc/aria2 >/dev/null 2>&1
 mkdir -p /root/.aria2
 mkdir -p /etc/aria2
-
 wget --no-check-certificate -q -O /root/.aria2/dht.dat "https://raw.githubusercontent.com/0oVicero0/Aria2c/master/.aria2/dht.dat"
 wget --no-check-certificate -q -O /etc/aria2/aria2c "https://raw.githubusercontent.com/0oVicero0/Aria2c/master/aria2c"
 wget --no-check-certificate -q -O /etc/aria2/aria2c.conf "https://raw.githubusercontent.com/0oVicero0/Aria2c/master/aria2c.conf"
