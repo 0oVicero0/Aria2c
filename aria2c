@@ -8,9 +8,13 @@
 # Short-Description: Start daemon at boot time
 # Description:       Enable aria2c by daemon.
 ### END INIT INFO
-DAEMON=/usr/bin/aria2c
+DAEMON=`which aria2c`
 CONFPATH=/etc/aria2/aria2c.conf
 WORKPATH=/usr/share/nginx/www
+
+[ -f "$DAEMON" ] || { 
+echo Not found aria2c! && exit 1 
+}
 
 case "$1" in
 start)
@@ -18,9 +22,9 @@ mkdir -p /root/.aria2
 mkdir -p $WORKPATH/restore
 mkdir -p $WORKPATH/torrent
 mkdir -p $WORKPATH/download
-cp -uf $WORKPATH/download/*.torrent $WORKPATH/torrent
-#rm -rf $WORKPATH/download/*
-ln -sf $WORKPATH/restore/* $WORKPATH/download
+cp -uf $WORKPATH/download/*.torrent $WORKPATH/torrent >/dev/null 2>&1
+rm -rf $WORKPATH/download/* >/dev/null 2>&1
+ln -sf $WORKPATH/restore/* $WORKPATH/download >/dev/null 2>&1
 iptables -A INPUT -p tcp --dport 6800 -j ACCEPT
 iptables -A INPUT -p tcp --dport 6881:6999 -j ACCEPT
 iptables -A INPUT -p udp --dport 6881:6999 -j ACCEPT
@@ -31,7 +35,7 @@ sleep 1
 $DAEMON --conf-path=$CONFPATH -D
 ;;
 stop)
-killall -9 aria2c >/dev/null 2>&1
+printf "aria2c " && killall -9 aria2c >/dev/null 2>&1
 ;;
 *)
 echo "Usage: aria2c {start|stop}"
