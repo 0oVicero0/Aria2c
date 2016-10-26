@@ -8,14 +8,7 @@ UnZipEXE=`which unzip`
 
 function Clean()
 {
-rm -rf /etc/init.d/aria2c >/dev/null 2>&1
-rm -rf /etc/rc0.d/*aria2c >/dev/null 2>&1
-rm -rf /etc/rc1.d/*aria2c >/dev/null 2>&1
-rm -rf /etc/rc2.d/*aria2c >/dev/null 2>&1
-rm -rf /etc/rc3.d/*aria2c >/dev/null 2>&1
-rm -rf /etc/rc4.d/*aria2c >/dev/null 2>&1
-rm -rf /etc/rc5.d/*aria2c >/dev/null 2>&1
-rm -rf /etc/rc6.d/*aria2c >/dev/null 2>&1
+CleanAuto;
 rm -rf /usr/local/share/man/man1/aria2c.1 >/dev/null 2>&1
 rm -rf /usr/local/share/man/pt/man1/aria2c.1 >/dev/null 2>&1
 rm -rf /usr/local/share/man/ru/man1/aria2c.1 >/dev/null 2>&1
@@ -24,6 +17,18 @@ rm -rf /etc/aria2 >/dev/null 2>&1
 apt-get purge -y aria2 >/dev/null 2>&1
 apt-get autoremove -y aria2 >/dev/null 2>&1
 Aria2cEXE=""
+}
+
+function CleanAuto()
+{
+rm -rf /etc/init.d/aria2c >/dev/null 2>&1
+rm -rf /etc/rc0.d/*aria2c >/dev/null 2>&1
+rm -rf /etc/rc1.d/*aria2c >/dev/null 2>&1
+rm -rf /etc/rc2.d/*aria2c >/dev/null 2>&1
+rm -rf /etc/rc3.d/*aria2c >/dev/null 2>&1
+rm -rf /etc/rc4.d/*aria2c >/dev/null 2>&1
+rm -rf /etc/rc5.d/*aria2c >/dev/null 2>&1
+rm -rf /etc/rc6.d/*aria2c >/dev/null 2>&1
 }
 
 function Install-by-itself()
@@ -45,7 +50,7 @@ tar -xvf aria2-release.tar.gz
 cd aria2*
 sed -i s'/1\, 16\,/1\, 64\,/' ./src/OptionHandlerFactory.cc
 autoreconf -i
-./configure --prefix=/usr --with-libxml2 --with-ca-bundle='/etc/ssl/certs/ca-certificates.crt'
+./configure --prefix=/usr/local --with-libxml2 --with-ca-bundle='/etc/ssl/certs/ca-certificates.crt'
 make && make install
 rm -rf /root/aria2*
 }
@@ -84,9 +89,8 @@ Install-WEB;
 
 chmod -R 755 /etc/aria2
 chmod +x /etc/aria2/aria2c
+CleanAuto && sleep 3
 ln -sf /etc/aria2/aria2c /etc/init.d/aria2c
-sleep 3
 update-rc.d aria2c defaults
 /etc/init.d/aria2c start
- 
  
