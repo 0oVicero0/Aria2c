@@ -8,9 +8,10 @@
 # Short-Description: Start daemon at boot time
 # Description:       Enable aria2c by daemon.
 ### END INIT INFO
-DAEMON=`which aria2c`
+
 CONFPATH=/etc/aria2/aria2c.conf
 WORKPATH=/usr/share/nginx/www
+DAEMON=`which aria2c`
 
 [ -f "$DAEMON" ] || { 
 echo Not found aria2c! && exit 1 
