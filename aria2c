@@ -34,7 +34,7 @@ iptables -A OUTPUT -p tcp --dport 6881:6999 -j ACCEPT
 iptables -A OUTPUT -p udp --dport 6881:6999 -j ACCEPT
 sleep 1
 $DAEMON --conf-path=$CONFPATH -D
-echo "Success! "
+echo "aria2c Success! "
 ;;
 stop)
 printf "aria2c " && killall -9 aria2c >/dev/null 2>&1
