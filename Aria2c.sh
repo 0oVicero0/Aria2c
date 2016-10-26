@@ -81,3 +81,6 @@ Install-by-yourself;
 else
 Install-by-itself;
 fi
+Install-WEB;
+Install-Auto;
+
