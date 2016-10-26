@@ -46,7 +46,7 @@ tar -xvf aria2-release.tar.gz
 cd aria2*
 sed -i s'/1\, 16\,/1\, 64\,/' ./src/OptionHandlerFactory.cc
 autoreconf -i
-./configure --prefix=/usr/local --with-libxml2 --with-ca-bundle='/etc/ssl/certs/ca-certificates.crt'
+./configure --prefix=/usr --with-libxml2 --with-ca-bundle='/etc/ssl/certs/ca-certificates.crt'
 make && make install
 rm -rf /root/aria2*
 }
@@ -85,5 +85,6 @@ Install-WEB;
 chmod -R 755 /etc/aria2
 chmod +x /etc/aria2/aria2c
 ln -sf /etc/aria2/aria2c /etc/init.d/aria2c
-sudo update-rc.d aria2c defaults
+sleep 3
+update-rc.d aria2c defaults
 /etc/init.d/aria2c start
