@@ -26,12 +26,25 @@ apt-get install -y aria2
 Aria2cEXE=`which aria2c`
 UnZipEXE=`which unzip`
 
+function Clean()
+{
+rm -rf /usr/local/share/man/man1/aria2c.1 >/dev/null 2>&1
+rm -rf /usr/local/share/man/pt/man1/aria2c.1 >/dev/null 2>&1
+rm -rf /usr/local/share/man/ru/man1/aria2c.1 >/dev/null 2>&1
+rm -rf /usr/local/bin/aria2c >/dev/null 2>&1
+Aria2cEXE=""
+}
+
+if [[ "$1" == 'clean' ]]; then
+Clean;
+fi
 if [[ "$Aria2cEXE" == "" ]]; then
 apt-get update
 if [[ "$1" == 'manual' ]]; then
-Install-by-yourself
+Clean;
+Install-by-yourself;
 else
-Install-by-itself
+Install-by-itself;
 fi fi
 
 if [[ "$UnZipEXE" == "" ]]; then
