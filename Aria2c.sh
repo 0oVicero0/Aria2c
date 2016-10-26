@@ -32,12 +32,13 @@ rm -rf /usr/local/share/man/man1/aria2c.1 >/dev/null 2>&1
 rm -rf /usr/local/share/man/pt/man1/aria2c.1 >/dev/null 2>&1
 rm -rf /usr/local/share/man/ru/man1/aria2c.1 >/dev/null 2>&1
 rm -rf /usr/local/bin/aria2c >/dev/null 2>&1
+rm -rf /etc/aria2 >/dev/null 2>&1
 Aria2cEXE=""
 }
 
 if [[ "$1" == 'clean' ]]; then
 Clean;
-exit 1
+exit 0
 fi
 if [[ "$Aria2cEXE" == "" ]]; then
 apt-get update
