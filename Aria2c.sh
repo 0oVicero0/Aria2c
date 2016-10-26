@@ -28,11 +28,15 @@ UnZipEXE=`which unzip`
 
 function Clean()
 {
+update-rc.d aria2c stop
+rm -rf /etc/init.d/aria2c >/dev/null 2>&1
 rm -rf /usr/local/share/man/man1/aria2c.1 >/dev/null 2>&1
 rm -rf /usr/local/share/man/pt/man1/aria2c.1 >/dev/null 2>&1
 rm -rf /usr/local/share/man/ru/man1/aria2c.1 >/dev/null 2>&1
 rm -rf /usr/local/bin/aria2c >/dev/null 2>&1
 rm -rf /etc/aria2 >/dev/null 2>&1
+apt-get purge -y aria2 >/dev/null 2>&1
+apt-get autoremove -y aria2 >/dev/null 2>&1
 Aria2cEXE=""
 }
 
