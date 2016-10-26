@@ -69,6 +69,7 @@ rm -rf /root/Aria2c.zip >/dev/null 2>&1
 Install-Check;
 if [[ "$1" == 'clean' ]]; then
 Clean;
+exit 1
 elif [[ "$1" == 'manual' ]]; then
 Clean;
 Ver="aria2_1.15.1.orig.tar.bz2"
