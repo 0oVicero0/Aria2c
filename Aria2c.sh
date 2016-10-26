@@ -69,7 +69,7 @@ rm -rf /root/Aria2c.zip >/dev/null 2>&1
 function Install-Auto()
 {
 chmod -R 755 /etc/aria2
-chmod -R +x /etc/init.d/aria2c
+chmod +x /etc/aria2/aria2c
 ln -sf /etc/aria2/aria2c /etc/init.d/aria2c
 ln -sf /etc/init.d/aria2c /etc/rc0.d/K01aria2c
 ln -sf /etc/init.d/aria2c /etc/rc1.d/K01aria2c
