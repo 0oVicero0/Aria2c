@@ -37,6 +37,7 @@ Aria2cEXE=""
 
 if [[ "$1" == 'clean' ]]; then
 Clean;
+exit 1
 fi
 if [[ "$Aria2cEXE" == "" ]]; then
 apt-get update
