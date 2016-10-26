@@ -44,13 +44,6 @@ make && make install
 rm -rf /root/aria2*
 }
 
-function VER()
-{
-Ver="aria2_1.15.1.orig.tar.bz2"
-#Ver="aria2_1.18.8.orig.tar.bz2"
-#Ver="aria2_1.27.1.orig.tar.gz"
-}
-
 function Install-WEB()
 {
 [ -z "$UnZipEXE" ] && apt-get install -y unzip
