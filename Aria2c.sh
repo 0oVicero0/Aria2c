@@ -6,7 +6,7 @@ rm -rf /usr/local/share/man/man1/aria2c.1 >/dev/null 2>&1
 rm -rf /usr/local/share/man/pt/man1/aria2c.1 >/dev/null 2>&1
 rm -rf /usr/local/share/man/ru/man1/aria2c.1 >/dev/null 2>&1
 rm -rf /usr/local/bin/aria2c >/dev/null 2>&1
-apt-get install -y libgnutls-dev libgcrypt-dev libssl-dev libexpat1-dev libssh2-1-dev libc-ares-dev zlib1g-dev libsqlite3-dev pkg-config
+apt-get install -y libc-ares2 libc6 libgcc1 libgmp10 libgnutls-deb0-28 libnettle4 libsqlite3-0 libstdc++6 libxml2 zlib1g libgnutls-dev libgcrypt-dev libssl-dev libexpat1-dev libssh2-1-dev libc-ares-dev zlib1g-dev libsqlite3-dev pkg-config ca-certificates
 cd /root
 rm -rf aria2-*
 wget --no-check-certificate -O aria2-release.tar.gz "http://http.debian.net/debian/pool/main/a/aria2/aria2_1.18.8.orig.tar.bz2"
