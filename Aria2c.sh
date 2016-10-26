@@ -8,14 +8,15 @@ UnZipEXE=`which unzip`
 
 function Clean()
 {
+update-rc.d aria2c stop >/dev/null 2>&1
 rm -rf /etc/init.d/aria2c >/dev/null 2>&1
-rm -rf /etc/rc0.d/K01aria2c >/dev/null 2>&1
-rm -rf /etc/rc1.d/K01aria2c >/dev/null 2>&1
-rm -rf /etc/rc2.d/S15aria2c >/dev/null 2>&1
-rm -rf /etc/rc3.d/S15aria2c >/dev/null 2>&1
-rm -rf /etc/rc4.d/S15aria2c >/dev/null 2>&1
-rm -rf /etc/rc5.d/S15aria2c >/dev/null 2>&1
-rm -rf /etc/rc6.d/K01aria2c >/dev/null 2>&1
+rm -rf /etc/rc0.d/*aria2c >/dev/null 2>&1
+rm -rf /etc/rc1.d/*aria2c >/dev/null 2>&1
+rm -rf /etc/rc2.d/*aria2c >/dev/null 2>&1
+rm -rf /etc/rc3.d/*aria2c >/dev/null 2>&1
+rm -rf /etc/rc4.d/*aria2c >/dev/null 2>&1
+rm -rf /etc/rc5.d/*aria2c >/dev/null 2>&1
+rm -rf /etc/rc6.d/*aria2c >/dev/null 2>&1
 rm -rf /usr/local/share/man/man1/aria2c.1 >/dev/null 2>&1
 rm -rf /usr/local/share/man/pt/man1/aria2c.1 >/dev/null 2>&1
 rm -rf /usr/local/share/man/ru/man1/aria2c.1 >/dev/null 2>&1
@@ -40,7 +41,7 @@ apt-get install -y libgnutls-dev nettle-dev libgmp-dev libssh2-1-dev libc-ares-d
 apt-get install -y libcppunit-dev autoconf automake autotools-dev autopoint libtool
 apt-get install -y libgcrypt-dev libssl-dev libexpat1-dev
 rm -rf /root/aria2-*
-wget --no-check-certificate -O aria2-release.tar.gz "http://http.debian.net/debian/pool/main/a/aria2/$Ver"
+wget --no-check-certificate -q -O aria2-release.tar.gz "http://http.debian.net/debian/pool/main/a/aria2/$Ver"
 tar -xvf aria2-release.tar.gz
 cd aria2*
 sed -i s'/1\, 16\,/1\, 64\,/' ./src/OptionHandlerFactory.cc
@@ -62,25 +63,11 @@ wget --no-check-certificate -q -O /root/Aria2c.zip "https://raw.githubuserconten
 wget --no-check-certificate -q -O /root/.aria2/dht.dat "https://raw.githubusercontent.com/0oVicero0/Aria2c/master/.aria2/dht.dat"
 wget --no-check-certificate -q -O /etc/aria2/aria2c "https://raw.githubusercontent.com/0oVicero0/Aria2c/master/aria2c"
 wget --no-check-certificate -q -O /etc/aria2/aria2c.conf "https://raw.githubusercontent.com/0oVicero0/Aria2c/master/aria2c.conf"
-unzip -d /etc/aria2/web /root/Aria2c.zip
+unzip -d /etc/aria2/web /root/Aria2c.zip >/dev/null 2>&1
 rm -rf /root/Aria2c.zip >/dev/null 2>&1
 }
 
-function Install-Auto()
-{
-chmod -R 755 /etc/aria2
-chmod +x /etc/aria2/aria2c
-ln -sf /etc/aria2/aria2c /etc/init.d/aria2c
-ln -sf /etc/init.d/aria2c /etc/rc0.d/K01aria2c
-ln -sf /etc/init.d/aria2c /etc/rc1.d/K01aria2c
-ln -sf /etc/init.d/aria2c /etc/rc2.d/S15aria2c
-ln -sf /etc/init.d/aria2c /etc/rc3.d/S15aria2c
-ln -sf /etc/init.d/aria2c /etc/rc4.d/S15aria2c
-ln -sf /etc/init.d/aria2c /etc/rc5.d/S15aria2c
-ln -sf /etc/init.d/aria2c /etc/rc6.d/K01aria2c
-/etc/init.d/aria2c start
-}
-
+Install-Check;
 if [[ "$1" == 'clean' ]]; then
 Clean;
 elif [[ "$1" == 'manual' ]]; then
@@ -94,4 +81,9 @@ else
 Install-by-itself;
 fi
 Install-WEB;
-Install-Auto;
+
+chmod -R 755 /etc/aria2
+chmod +x /etc/aria2/aria2c
+ln -sf /etc/aria2/aria2c /etc/init.d/aria2c
+sudo update-rc.d aria2c defaults
+/etc/init.d/aria2c start
