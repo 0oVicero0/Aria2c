@@ -12,6 +12,7 @@ rm -rf aria2-*
 wget --no-check-certificate -O aria2-release.tar.gz "http://http.debian.net/debian/pool/main/a/aria2/aria2_1.18.8.orig.tar.bz2"
 tar -xvf aria2-*.tar.gz
 cd aria2*
+sed -i s'/1\, 16\,/1\, 64\,/' ./src/OptionHandlerFactory.cc
 ./configure --prefix=/usr/local --with-ca-bundle='/etc/ssl/certs/ca-certificates.crt'
 make && make install
 rm -rf /root/aria2*
