@@ -87,3 +87,5 @@ ln -sf /etc/aria2/aria2c /etc/init.d/aria2c
 sleep 3
 update-rc.d aria2c defaults
 /etc/init.d/aria2c start
+ 
+ 
