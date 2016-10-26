@@ -11,11 +11,9 @@
 
 CONFPATH=/etc/aria2/aria2c.conf
 WORKPATH=/usr/share/nginx/www
-DAEMON=`which aria2c`
 
-[ -f "$DAEMON" ] || { 
-echo Not found aria2c! && exit 1 
-}
+[ -f "/usr/bin/aria2c" ] && DAEMON=/usr/bin/aria2c
+[ -f "/usr/local/bin/aria2c" ] && DAEMON=/usr/local/bin/aria2c
 
 case "$1" in
 start)
