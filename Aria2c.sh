@@ -8,7 +8,6 @@ UnZipEXE=`which unzip`
 
 function Clean()
 {
-update-rc.d aria2c stop >/dev/null 2>&1
 rm -rf /etc/init.d/aria2c >/dev/null 2>&1
 rm -rf /etc/rc0.d/*aria2c >/dev/null 2>&1
 rm -rf /etc/rc1.d/*aria2c >/dev/null 2>&1
