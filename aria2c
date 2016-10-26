@@ -11,11 +11,12 @@
 
 CONFPATH=/etc/aria2/aria2c.conf
 WORKPATH=/usr/share/nginx/www
+DAEMON=`which aria2c`
 
-[ -f "/usr/bin/aria2c" ] && DAEMON=/usr/bin/aria2c
-[ -f "/usr/local/bin/aria2c" ] && DAEMON=/usr/local/bin/aria2c
+[ -f "$DAEMON" ] || { 
+echo Not found aria2c! && exit 1 
+}
 
-test -x $DAEMON || exit 0
 case "$1" in
 start)
 mkdir -p /root/.aria2
@@ -33,7 +34,7 @@ iptables -A OUTPUT -p tcp --dport 6881:6999 -j ACCEPT
 iptables -A OUTPUT -p udp --dport 6881:6999 -j ACCEPT
 sleep 1
 $DAEMON --conf-path=$CONFPATH -D
-echo "Success"
+echo "Success! "
 ;;
 stop)
 printf "aria2c " && killall -9 aria2c >/dev/null 2>&1
