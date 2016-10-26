@@ -8,8 +8,14 @@ UnZipEXE=`which unzip`
 
 function Clean()
 {
-update-rc.d aria2c stop >/dev/null 2>&1
 rm -rf /etc/init.d/aria2c >/dev/null 2>&1
+rm -rf /etc/rc0.d/K01aria2c >/dev/null 2>&1
+rm -rf /etc/rc1.d/K01aria2c >/dev/null 2>&1
+rm -rf /etc/rc2.d/S15aria2c >/dev/null 2>&1
+rm -rf /etc/rc3.d/S15aria2c >/dev/null 2>&1
+rm -rf /etc/rc4.d/S15aria2c >/dev/null 2>&1
+rm -rf /etc/rc5.d/S15aria2c >/dev/null 2>&1
+rm -rf /etc/rc6.d/K01aria2c >/dev/null 2>&1
 rm -rf /usr/local/share/man/man1/aria2c.1 >/dev/null 2>&1
 rm -rf /usr/local/share/man/pt/man1/aria2c.1 >/dev/null 2>&1
 rm -rf /usr/local/share/man/ru/man1/aria2c.1 >/dev/null 2>&1
@@ -63,9 +69,15 @@ rm -rf /root/Aria2c.zip >/dev/null 2>&1
 function Install-Auto()
 {
 chmod -R 755 /etc/aria2
-chmod -R +X /etc/aria2
+chmod -R +x /etc/init.d/aria2c
 ln -sf /etc/aria2/aria2c /etc/init.d/aria2c
-update-rc.d aria2c defaults
+ln -sf /etc/init.d/aria2c /etc/rc0.d/K01aria2c
+ln -sf /etc/init.d/aria2c /etc/rc1.d/K01aria2c
+ln -sf /etc/init.d/aria2c /etc/rc2.d/S15aria2c
+ln -sf /etc/init.d/aria2c /etc/rc3.d/S15aria2c
+ln -sf /etc/init.d/aria2c /etc/rc4.d/S15aria2c
+ln -sf /etc/init.d/aria2c /etc/rc5.d/S15aria2c
+ln -sf /etc/init.d/aria2c /etc/rc6.d/K01aria2c
 /etc/init.d/aria2c start
 }
 
@@ -83,4 +95,3 @@ Install-by-itself;
 fi
 Install-WEB;
 Install-Auto;
-
