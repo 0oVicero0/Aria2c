@@ -53,9 +53,7 @@ Ver="aria2_1.15.1.orig.tar.bz2"
 
 function Install-WEB()
 {
-if [[ "$UnZipEXE" == "" ]]; then
-apt-get install -y unzip
-fi
+[ -z "$UnZipEXE" ] && apt-get install -y unzip
 rm -rf /root/.aria2 >/dev/null 2>&1
 rm -rf /etc/aria2 >/dev/null 2>&1
 mkdir -p /root/.aria2
