@@ -92,7 +92,7 @@ chmod +x /etc/aria2/aria2c
 CleanAuto && sleep 3
 chmod 777 /etc/aria2/aria2c
 ln -sf /etc/aria2/aria2c /usr/local/bin/aria2
-ln -sf /etc/aria2/aria2c /etc/init.d/aria2
+ln /etc/aria2/aria2c /etc/init.d/aria2
 update-rc.d aria2 defaults
 /etc/init.d/aria2 start
  
