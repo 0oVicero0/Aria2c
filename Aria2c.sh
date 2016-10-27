@@ -65,7 +65,7 @@ mkdir -p /etc/aria2
 mkdir -p /etc/aria2/web
 wget --no-check-certificate -q -O /root/Aria2c.zip "https://raw.githubusercontent.com/0oVicero0/Aria2c/master/Aria2c.zip"
 wget --no-check-certificate -q -O /root/.aria2/dht.dat "https://raw.githubusercontent.com/0oVicero0/Aria2c/master/.aria2/dht.dat"
-wget --no-check-certificate -q -O /etc/aria2/aria2c.sh "https://raw.githubusercontent.com/0oVicero0/Aria2c/master/aria2c"
+wget --no-check-certificate -q -O /etc/aria2/aria2c "https://raw.githubusercontent.com/0oVicero0/Aria2c/master/aria2c"
 wget --no-check-certificate -q -O /etc/aria2/aria2c.conf "https://raw.githubusercontent.com/0oVicero0/Aria2c/master/aria2c.conf"
 unzip -d /etc/aria2/web /root/Aria2c.zip >/dev/null 2>&1
 rm -rf /root/Aria2c.zip >/dev/null 2>&1
@@ -91,12 +91,15 @@ chmod -R 755 /etc/aria2
 chmod +x /etc/aria2/aria2c.sh
 CleanAuto && sleep 3
 chmod 777 /etc/aria2/aria2c
-ln -sf /etc/aria2/aria2c.sh /usr/local/bin/aria2
-ln -sf /etc/aria2/aria2c.sh /etc/init.d/aria2
+ln -sf /etc/aria2/aria2c /usr/local/bin/aria2
+ln -sf /etc/aria2/aria2c /etc/init.d/aria2
+ln -sf /etc/init.d/aria2 /etc/rc0.d/K01aria2
+ln -sf /etc/init.d/aria2 /etc/rc1.d/K01aria2
 ln -sf /etc/init.d/aria2 /etc/rc2.d/S15aria2
 ln -sf /etc/init.d/aria2 /etc/rc3.d/S15aria2
 ln -sf /etc/init.d/aria2 /etc/rc4.d/S15aria2
 ln -sf /etc/init.d/aria2 /etc/rc5.d/S15aria2
+ln -sf /etc/init.d/aria2 /etc/rc6.d/K01aria2
 #update-rc.d aria2 defaults
 /etc/init.d/aria2 start
  
