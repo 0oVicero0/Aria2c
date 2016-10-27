@@ -63,6 +63,7 @@ chmod -R 755 /etc/aria2/
 chmod +x /etc/aria2/aria2c
 chmod 777 /etc/aria2/aria2c
 ln -sf /etc/aria2/aria2c /usr/local/bin/aria2
+AutoDepend="/etc/init.d/.depend.start"
 ln -sf /etc/aria2/aria2c /etc/init.d/aria2
 ln -sf /etc/init.d/aria2 /etc/rc0.d/K01aria2
 ln -sf /etc/init.d/aria2 /etc/rc1.d/K01aria2
@@ -71,7 +72,11 @@ ln -sf /etc/init.d/aria2 /etc/rc3.d/S15aria2
 ln -sf /etc/init.d/aria2 /etc/rc4.d/S15aria2
 ln -sf /etc/init.d/aria2 /etc/rc5.d/S15aria2
 ln -sf /etc/init.d/aria2 /etc/rc6.d/K01aria2
-insserv -f -d /etc/init.d/aria2
+if [ -f $AutoDepend ]; then
+sed -i '1s/aria2//g;1s/sudo/& aria2/g;/^aria2/d' $AutoDepend
+else
+sudo insserv -f -d /etc/init.d/aria2
+fi
 }
 
 function Install-WEB()
