@@ -16,6 +16,7 @@ rm -rf /usr/local/bin/aria2c >/dev/null 2>&1
 rm -rf /etc/aria2 >/dev/null 2>&1
 apt-get purge -y aria2 >/dev/null 2>&1
 apt-get autoremove -y aria2 >/dev/null 2>&1
+rm -rf /root/aria2* >/dev/null 2>&1
 Aria2cEXE=""
 }
 
