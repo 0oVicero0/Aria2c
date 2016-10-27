@@ -75,7 +75,7 @@ ln -sf /etc/init.d/aria2 /etc/rc6.d/K01aria2
 if [ -f $AutoDepend ]; then
 sed -i '1s/aria2//g;1s/sudo/& aria2/g;/^aria2/d' $AutoDepend
 else
-sudo insserv -f -d /etc/init.d/aria2
+sudo update-rc.d aria2c defaults
 fi
 }
 
