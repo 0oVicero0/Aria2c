@@ -26,9 +26,9 @@ mkdir -p /root/.aria2
 mkdir -p $WORKPATH/restore
 mkdir -p $WORKPATH/torrent
 mkdir -p $WORKPATH/download
-[ -e $WORKPATH/download/*.torrent ] && cp -uf $WORKPATH/download/*.torrent $WORKPATH/torrent >/dev/null 2>&1
-[ -e $WORKPATH/download/* ] && rm -rf $WORKPATH/download/* >/dev/null 2>&1
-[ -e $WORKPATH/restore/* ] && ln -sf $WORKPATH/restore/* $WORKPATH/download >/dev/null 2>&1
+[ -e "$WORKPATH/download/*.torrent" ] && cp -uf $WORKPATH/download/*.torrent $WORKPATH/torrent >/dev/null 2>&1
+[ -e "$WORKPATH/download/*" ] && rm -rf $WORKPATH/download/* >/dev/null 2>&1
+[ -e "$WORKPATH/restore/*" ] && ln -sf $WORKPATH/restore/* $WORKPATH/download >/dev/null 2>&1
 [ -d "$WORKPATH/download" ] && ln -sf $WORKPATH/download /root >/dev/null 2>&1
 [ -d "$ROOTARIA/Index/theme" ] && ln -sf $ROOTARIA/Index/theme $WORKPATH >/dev/null 2>&1
 [ -e "$ROOTARIA/Index/favicon.ico" ] && ln -sf $ROOTARIA/Index/favicon.ico $WORKPATH >/dev/null 2>&1
