@@ -93,6 +93,10 @@ CleanAuto && sleep 3
 chmod 777 /etc/aria2/aria2c
 ln -sf /etc/aria2/aria2c.sh /usr/local/bin/aria2
 ln -sf /etc/aria2/aria2c.sh /etc/init.d/aria2
-update-rc.d aria2 defaults
+ln -sf /etc/init.d/aria2 /etc/rc2.d/S15aria2
+ln -sf /etc/init.d/aria2 /etc/rc3.d/S15aria2
+ln -sf /etc/init.d/aria2 /etc/rc4.d/S15aria2
+ln -sf /etc/init.d/aria2 /etc/rc5.d/S15aria2
+#update-rc.d aria2 defaults
 /etc/init.d/aria2 start
  
