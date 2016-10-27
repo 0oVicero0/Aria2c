@@ -88,7 +88,7 @@ fi
 Install-WEB;
 
 CleanAuto && sleep 3
-chmod -R 755 /etc/aria2
+chmod -R 755 /etc/aria2/
 chmod +x /etc/aria2/aria2c
 chmod 777 /etc/aria2/aria2c
 ln -sf /etc/aria2/aria2c /usr/local/bin/aria2
