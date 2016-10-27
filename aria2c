@@ -1,0 +1,59 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          aria2
+# Required-Start:    $local_fs $remote_fs $network $syslog
+# Required-Stop:     $local_fs $remote_fs $network $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start daemon at boot time
+# Description:       Enable aria2c by daemon.
+### END INIT INFO
+PATH=/usr/sbin:/usr/bin:/usr/local/bin:/usr/local/sbin:/sbin:/bin
+DAEMON=aria2c
+ROOTARIA=/etc/aria2
+WORKPATH=/usr/share/nginx/www
+
+[ -z "$DAEMON" ] && echo "Not found aria2c! " && exit 1
+
+DAEMONPID=`ps -e |grep aria2c |awk '{ print $1 }'`
+
+case "$1" in
+start)
+[ ! -z "$DAEMONPID" ] && echo "aria2c already in run [$DAEMONPID]." && exit 0
+RD=`ls -A -1 "$WORKPATH/restore"`
+DD=`ls -A -1 "$WORKPATH/download"`
+DT=`ls -A -1 "$WORKPATH/download" |grep "torrent"`
+[ -n "$DT" ] && cp -uf $WORKPATH/download/*.torrent $WORKPATH/torrent >/dev/null 2>&1
+[ -n "$DD" ] && rm -rf $WORKPATH/download/* >/dev/null 2>&1
+[ -n "$RD" ] && ln -sf $WORKPATH/restore/* $WORKPATH/download >/dev/null 2>&1
+[ -d "$ROOTARIA/Index/theme" ] && ln -sf $ROOTARIA/Index/theme $WORKPATH >/dev/null 2>&1
+[ -e "$ROOTARIA/Index/favicon.ico" ] && ln -sf $ROOTARIA/Index/favicon.ico $WORKPATH >/dev/null 2>&1
+ln -sf $WORKPATH/download /root >/dev/null 2>&1
+iptables -A INPUT -p tcp --dport 6800 -j ACCEPT
+iptables -A INPUT -p tcp --dport 6881:6999 -j ACCEPT
+iptables -A INPUT -p udp --dport 6881:6999 -j ACCEPT
+iptables -A OUTPUT -p tcp --dport 6800 -j ACCEPT
+iptables -A OUTPUT -p tcp --dport 6881:6999 -j ACCEPT
+iptables -A OUTPUT -p udp --dport 6881:6999 -j ACCEPT
+sleep 1
+$DAEMON --conf-path=$ROOTARIA/aria2c.conf -D
+DAEMONPID=`ps -e |grep aria2c |awk '{ print $1 }'`
+[ ! -z "$DAEMONPID" ] && echo "aria2c START Success [$DAEMONPID]! "
+[ -z "$DAEMONPID" ] && echo "aria2c START Fail! "
+;;
+stop)
+[ -z $DAEMONPID ] && echo "aria2c not work ." && exit 1
+killall -q -9 aria2c >/dev/null 2>&1
+[ -z $DAEMONPID ] && echo "aria2c STOP Success."
+[ ! -z $DAEMONPID ] && echo "aria2c STOP Fail."
+;;
+restart)
+killall -q -9 aria2c >/dev/null 2>&1
+$0 start;
+;;
+*)
+echo "Usage: aria2c {start|stop|restart}"
+exit 1
+esac
+exit 0
+ 
