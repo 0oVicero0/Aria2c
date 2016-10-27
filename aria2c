@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 ### BEGIN INIT INFO
 # Provides:          aria2
 # Required-Start:    $local_fs $remote_fs $network $syslog
