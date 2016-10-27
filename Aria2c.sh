@@ -71,7 +71,7 @@ ln -sf /etc/init.d/aria2 /etc/rc3.d/S15aria2
 ln -sf /etc/init.d/aria2 /etc/rc4.d/S15aria2
 ln -sf /etc/init.d/aria2 /etc/rc5.d/S15aria2
 ln -sf /etc/init.d/aria2 /etc/rc6.d/K01aria2
-`insserv -f -d /etc/init.d/aria2`
+insserv -f -d /etc/init.d/aria2
 }
 
 function Install-WEB()
