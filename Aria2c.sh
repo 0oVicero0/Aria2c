@@ -82,15 +82,15 @@ fi
 function Install-WEB()
 {
 [ -z "$UnZipEXE" ] && apt-get install -y unzip
-rm -rf /root/.aria2 >/dev/null 2>&1
+[ ! -f "/root/.aria2/dht.dat" ] || rm -rf /root/.aria2 >/dev/null 2>&1
 rm -rf /etc/aria2 >/dev/null 2>&1
 mkdir -p /root/.aria2
 mkdir -p /etc/aria2
 mkdir -p /etc/aria2/web
 wget --no-check-certificate -q -O /root/Aria2c.zip "https://raw.githubusercontent.com/0oVicero0/Aria2c/master/Aria2c.zip"
-wget --no-check-certificate -q -O /root/.aria2/dht.dat "https://raw.githubusercontent.com/0oVicero0/Aria2c/master/.aria2/dht.dat"
 wget --no-check-certificate -q -O /etc/aria2/aria2c "https://raw.githubusercontent.com/0oVicero0/Aria2c/master/aria2c"
 wget --no-check-certificate -q -O /etc/aria2/aria2c.conf "https://raw.githubusercontent.com/0oVicero0/Aria2c/master/aria2c.conf"
+[ ! -f "/root/.aria2/dht.dat" ] || wget --no-check-certificate -q -O /root/.aria2/dht.dat "https://raw.githubusercontent.com/0oVicero0/Aria2c/master/.aria2/dht.dat"
 unzip -d /etc/aria2/web /root/Aria2c.zip >/dev/null 2>&1
 rm -rf /root/Aria2c.zip >/dev/null 2>&1
 }
