@@ -105,5 +105,5 @@ Install-by-itself;
 fi
 Install-WEB;
 Install-Auto;
-aria2 start
+ 
 
