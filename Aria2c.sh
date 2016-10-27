@@ -21,14 +21,14 @@ Aria2cEXE=""
 
 function CleanAuto()
 {
-rm -rf /etc/init.d/aria2c >/dev/null 2>&1
-rm -rf /etc/rc0.d/*aria2c >/dev/null 2>&1
-rm -rf /etc/rc1.d/*aria2c >/dev/null 2>&1
-rm -rf /etc/rc2.d/*aria2c >/dev/null 2>&1
-rm -rf /etc/rc3.d/*aria2c >/dev/null 2>&1
-rm -rf /etc/rc4.d/*aria2c >/dev/null 2>&1
-rm -rf /etc/rc5.d/*aria2c >/dev/null 2>&1
-rm -rf /etc/rc6.d/*aria2c >/dev/null 2>&1
+rm -rf /etc/init.d/aria2* >/dev/null 2>&1
+rm -rf /etc/rc0.d/*aria2* >/dev/null 2>&1
+rm -rf /etc/rc1.d/*aria2* >/dev/null 2>&1
+rm -rf /etc/rc2.d/*aria2* >/dev/null 2>&1
+rm -rf /etc/rc3.d/*aria2* >/dev/null 2>&1
+rm -rf /etc/rc4.d/*aria2* >/dev/null 2>&1
+rm -rf /etc/rc5.d/*aria2* >/dev/null 2>&1
+rm -rf /etc/rc6.d/*aria2* >/dev/null 2>&1
 }
 
 function Install-by-itself()
@@ -90,8 +90,8 @@ Install-WEB;
 chmod -R 755 /etc/aria2
 chmod +x /etc/aria2/aria2c
 CleanAuto && sleep 3
-ln -sf /etc/aria2/aria2c /etc/init.d/aria2c
 chmod 777 /etc/aria2/aria2c
-update-rc.d aria2c defaults
-/etc/init.d/aria2c start
+ln -sf /etc/aria2/aria2c /etc/init.d/aria2
+update-rc.d aria2 defaults
+/etc/init.d/aria2 start
  
