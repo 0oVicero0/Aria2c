@@ -30,7 +30,11 @@ DT=`ls -A -1 "$WORKPATH/download" |grep "torrent"`
 [ -e "$ROOTARIA/Index/favicon.ico" ] && ln -sf $ROOTARIA/Index/favicon.ico $WORKPATH >/dev/null 2>&1
 ln -sf $WORKPATH/download /root >/dev/null 2>&1
 iptables -A INPUT -p tcp --dport 6800 -j ACCEPT
+iptables -A INPUT -p tcp --dport 6881:6999 -j ACCEPT
+iptables -A INPUT -p udp --dport 6881:6999 -j ACCEPT
 iptables -A OUTPUT -p tcp --dport 6800 -j ACCEPT
+iptables -A OUTPUT -p tcp --dport 6881:6999 -j ACCEPT
+iptables -A OUTPUT -p udp --dport 6881:6999 -j ACCEPT
 sleep 1
 $DAEMON --conf-path=$ROOTARIA/aria2c.conf -D
 DAEMONPID=`ps -e |grep aria2c |awk '{ print $1 }'`
