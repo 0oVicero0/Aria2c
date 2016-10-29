@@ -7,21 +7,6 @@ wget --no-check-certificate -O Aria2c.sh "https://raw.githubusercontent.com/0oVi
     
 ```
 ----------------------------------------------------------------------------
-```
-apt-get install -y libssl-dev libexpat1-dev libssh2-1-dev libc-ares-dev zlib1g-dev libsqlite3-dev pkg-config
-
-```
-----------------------------------------------------------------------------
-bypy
-```
-apt-get update
-apt-get install -y python-pip
-pip install requests
-pip install bypy
-bypy.py info
-
-```
-----------------------------------------------------------------------------
 ----------------------------------------------------------------------------
 ffmpeg
 ```
