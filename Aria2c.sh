@@ -41,7 +41,6 @@ apt-get install -y aria2
 function Install-by-yourself()
 {
 cd /root
-apt-get update
 apt-get install -y libgnutls-dev libgmp-dev libssh2-1-dev libc-ares-dev libxml2-dev zlib1g-dev libsqlite3-dev libgpg-error-dev pkg-config ca-certificates
 apt-get install -y libcppunit-dev autoconf automake autotools-dev autopoint libtool
 apt-get install -y libgcrypt-dev libssl-dev libexpat1-dev
@@ -105,6 +104,7 @@ Ver="aria2_1.15.1.orig.tar.bz2"
 [ "$2" == '1.15.1' ] && Ver="aria2_1.15.1.orig.tar.bz2"
 [ "$2" == '1.18.8' ] && Ver="aria2_1.18.8.orig.tar.bz2"
 [ "$2" == '1.27.1' ] && Ver="aria2_1.27.1.orig.tar.gz"
+Install-by-itself && Clean;
 Install-by-yourself;
 else
 Install-by-itself;
