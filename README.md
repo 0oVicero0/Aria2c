@@ -11,6 +11,8 @@ wget --no-check-certificate -O Aria2c.sh "https://raw.githubusercontent.com/0oVi
 ffmpeg
 ```
 echo "deb ftp://ftp.deb-multimedia.org wheezy main" >>/etc/apt/sources.list
+echo "deb ftp://ftp.deb-multimedia.org jessie main" >>/etc/apt/sources.list
+
 apt-get update
 apt-get install -y --force-yes deb-multimedia-keyring
 apt-get update
