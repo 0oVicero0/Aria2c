@@ -13,7 +13,7 @@ DAEMON=aria2c
 ROOTARIA=/etc/aria2
 WORKPATH=/usr/share/nginx/www
 
-[ -z "$DAEMON" ] && echo "Not found aria2c! " && exit 1
+[ -z "$(which $DAEMON)" ] && echo "Not found aria2c! " && exit 1
 
 case "$1" in
 start)
