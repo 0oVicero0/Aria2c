@@ -26,7 +26,6 @@ iptables -A OUTPUT -p tcp --dport 6881:6999 -j ACCEPT
 iptables -A OUTPUT -p udp --dport 6881:6999 -j ACCEPT
 sleep 1
 $DAEMON --conf-path=$ROOTARIA/aria2c.conf -D
-DAEMONPID=`ps -e |grep aria2c |awk '{ print $1 }'`
 [ -n "$(pgrep 'aria2c')" ] && echo "aria2c START Success [$(pgrep 'aria2c')]! "
 [ -z "$(pgrep 'aria2c')" ] && echo "aria2c START Fail! "
 ;;
