@@ -15,20 +15,11 @@ WORKPATH=/usr/share/nginx/www
 
 [ -z "$DAEMON" ] && echo "Not found aria2c! " && exit 1
 
-DAEMONPID=`ps -e |grep aria2c |awk '{ print $1 }'`
+DAEMONPID=$(pgrep 'aria2c')
 
 case "$1" in
 start)
-[ ! -z "$DAEMONPID" ] && echo "aria2c already in run [$DAEMONPID]." && exit 0
-RD=`ls -A -1 "$WORKPATH/restore"`
-DD=`ls -A -1 "$WORKPATH/download"`
-DT=`ls -A -1 "$WORKPATH/download" |grep "torrent"`
-[ -n "$DT" ] && cp -uf $WORKPATH/download/*.torrent $WORKPATH/torrent >/dev/null 2>&1
-[ -n "$DD" ] && rm -rf $WORKPATH/download/* >/dev/null 2>&1
-[ -n "$RD" ] && ln -sf $WORKPATH/restore/* $WORKPATH/download >/dev/null 2>&1
-[ -d "$ROOTARIA/Index/theme" ] && ln -sf $ROOTARIA/Index/theme $WORKPATH >/dev/null 2>&1
-[ -e "$ROOTARIA/Index/favicon.ico" ] && ln -sf $ROOTARIA/Index/favicon.ico $WORKPATH >/dev/null 2>&1
-ln -sf $WORKPATH/download /root >/dev/null 2>&1
+[ -n "$DAEMONPID" ] && echo "aria2c already in run [$DAEMONPID]." && exit 0
 iptables -A INPUT -p tcp --dport 6800 -j ACCEPT
 iptables -A INPUT -p tcp --dport 6881:6999 -j ACCEPT
 iptables -A INPUT -p udp --dport 6881:6999 -j ACCEPT
