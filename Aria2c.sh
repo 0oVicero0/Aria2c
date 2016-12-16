@@ -1,10 +1,5 @@
 #!/bin/bash
 
-function Install-Check()
-{
-Aria2cEXE=`which aria2c`
-}
-
 function Clean()
 {
 update-rc.d -f aria2 remove
@@ -53,7 +48,6 @@ update-rc.d aria2 defaults
 fi
 }
 
-Install-Check;
 if [[ "$1" == 'clean' ]]; then
 Clean;
 exit 1
@@ -65,9 +59,10 @@ Ver="aria2_1.15.1.orig.tar.bz2"
 [ "$2" == '1.27.1' ] && Ver="aria2_1.27.1.orig.tar.gz"
 Install-by-itself && Clean;
 Install-by-yourself;
+Install-Auto;
 else
 Install-by-itself;
 fi
-Install-Auto;
+
  
 
