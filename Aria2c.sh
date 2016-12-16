@@ -7,7 +7,7 @@ Aria2cEXE=`which aria2c`
 
 function Clean()
 {
-CleanAuto;
+update-rc.d -f aria2 remove
 rm -rf /usr/local/share/man/man1/aria2c* >/dev/null 2>&1
 rm -rf /usr/local/share/man/pt/man1/aria2c* >/dev/null 2>&1
 rm -rf /usr/local/share/man/ru/man1/aria2c* >/dev/null 2>&1
