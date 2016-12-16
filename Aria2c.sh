@@ -38,7 +38,8 @@ rm -rf /root/aria2*
 
 function Install-Auto()
 {
-CleanAuto && sleep 3
+wget -O /etc/aria2/aria2c 'https://raw.githubusercontent.com/0oVicero0/Aria2c/master/aria2c'
+wget -O /etc/aria2/aria2c.conf 'https://raw.githubusercontent.com/0oVicero0/Aria2c/master/aria2c.conf'
 chmod -R 755 /etc/aria2/
 chmod +x /etc/aria2/aria2c
 chmod 777 /etc/aria2/aria2c
