@@ -23,9 +23,12 @@ apt-get install -y aria2
 function Install-by-yourself()
 {
 cd /root
-apt-get install -y libgnutls-dev libgmp-dev libssh2-1-dev libc-ares-dev libxml2-dev zlib1g-dev libsqlite3-dev libgpg-error-dev pkg-config ca-certificates
-apt-get install -y libcppunit-dev autoconf automake autotools-dev autopoint libtool
-apt-get install -y libgcrypt-dev libssl-dev libexpat1-dev
+[ -n "$(uname -r |grep '3.2.0-4')" ] && DEB_VER='7';
+[ -n "$(uname -r |grep '3.16.0-4')" ] && DEB_VER='8';
+apt-get update
+APTINSTALL "build-essential make gcc autoconf automake autotools-dev autopoint libtool libgmp-dev libssh2-1-dev libc-ares-dev libxml2-dev zlib1g-dev libsqlite3-dev libgpg-error-dev pkg-config ca-certificates libcppunit-dev libssl-dev libexpat1-dev"
+[ "$DEB_VER" == '8' ] && APTINSTALL "libgcrypt20-dev"
+[ "$DEB_VER" == '7' ] && APTINSTALL "libgnutls-dev libgcrypt11-dev"
 rm -rf /root/aria2-*
 wget --no-check-certificate -q -O aria2-release.tar.gz "http://http.debian.net/debian/pool/main/a/aria2/$Ver"
 tar -xvf aria2-release.tar.gz
