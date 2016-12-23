@@ -65,7 +65,7 @@ wget -O /etc/aria2/aria2c.conf 'https://raw.githubusercontent.com/0oVicero0/Aria
 chmod -R 755 /etc/aria2/
 chmod +x /etc/aria2/aria2c
 chmod 777 /etc/aria2/aria2c
-ln -sf /etc/aria2/aria2c /etc/init.d/aria2
+cp -f /etc/aria2/aria2c /etc/init.d/aria2
 update-rc.d -f aria2 remove
 update-rc.d aria2 defaults
 }
