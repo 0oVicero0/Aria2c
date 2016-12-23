@@ -46,7 +46,6 @@ chmod 777 /etc/aria2/aria2c
 ln -sf /etc/aria2/aria2c /usr/local/bin/aria2
 update-rc.d -f aria2 remove
 update-rc.d aria2 defaults
-fi
 }
 
 if [[ "$1" == 'clean' ]]; then
