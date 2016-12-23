@@ -8,6 +8,7 @@ rm -rf /usr/local/share/man/pt/man1/aria2c* >/dev/null 2>&1
 rm -rf /usr/local/share/man/ru/man1/aria2c* >/dev/null 2>&1
 rm -rf /usr/local/bin/aria2c >/dev/null 2>&1
 rm -rf /etc/aria2 >/dev/null 2>&1
+rm -rf /root/.aria2 >/dev/null 2>&1
 apt-get purge -y aria2 >/dev/null 2>&1
 apt-get autoremove -y aria2 >/dev/null 2>&1
 rm -rf /root/aria2* >/dev/null 2>&1
@@ -58,6 +59,7 @@ rm -rf /root/aria2*
 function Install-Auto()
 {
 mkdir -p /etc/aria2
+mkdir -p /root/.aria2
 wget -O /etc/aria2/aria2c 'https://raw.githubusercontent.com/0oVicero0/Aria2c/master/aria2c'
 wget -O /etc/aria2/aria2c.conf 'https://raw.githubusercontent.com/0oVicero0/Aria2c/master/aria2c.conf'
 chmod -R 755 /etc/aria2/
