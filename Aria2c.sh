@@ -58,6 +58,7 @@ rm -rf /root/aria2*
 
 function Install-Auto()
 {
+cd /root
 mkdir -p /etc/aria2
 mkdir -p /root/.aria2
 wget -O /etc/aria2/aria2c 'https://raw.githubusercontent.com/0oVicero0/Aria2c/master/aria2c'
