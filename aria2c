@@ -11,7 +11,6 @@
 PATH=/usr/sbin:/usr/bin:/usr/local/bin:/usr/local/sbin:/sbin:/bin
 DAEMON=aria2c
 ROOTARIA=/etc/aria2
-WORKPATH=/usr/share/nginx/www
 
 [ -z "$(which $DAEMON)" ] && echo "Not found aria2c! " && exit 1
 
