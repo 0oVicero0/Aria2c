@@ -20,6 +20,23 @@ apt-get update
 apt-get install -y aria2
 }
 
+function APTINSTALL(){
+    for DEB_IN in ${1}
+    do
+        echo -n -e "Installing package\e[36m ${DEB_IN} \e[0m"
+        apt-get install -qq -y ${2} ${DEB_IN} >/dev/null 2>&1
+        if [ $? -eq 0 ]; then
+            echo -e "[\e[32mok\e[0m]"
+        else
+            [ -n "${2}" ] && apt-get install -qq -y ${DEB_IN} >/dev/null 2>&1
+            if [ $? -eq 0 ]; then
+                echo -e "[\e[32mok\e[0m]"
+            else
+                echo -e "[\e[31mfail\e[0m]"
+        fi fi
+    done
+}
+
 function Install-by-yourself()
 {
 cd /root
