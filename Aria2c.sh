@@ -42,7 +42,6 @@ function Install-by-yourself()
 cd /root
 [ -n "$(uname -r |grep '3.2.0-4')" ] && DEB_VER='7';
 [ -n "$(uname -r |grep '3.16.0-4')" ] && DEB_VER='8';
-apt-get update
 APTINSTALL "build-essential make gcc autoconf automake autotools-dev autopoint libtool libgmp-dev libssh2-1-dev libc-ares-dev libxml2-dev zlib1g-dev libsqlite3-dev libgpg-error-dev pkg-config ca-certificates libcppunit-dev libssl-dev libexpat1-dev"
 [ "$DEB_VER" == '8' ] && APTINSTALL "libgcrypt20-dev"
 [ "$DEB_VER" == '7' ] && APTINSTALL "libgnutls-dev libgcrypt11-dev"
